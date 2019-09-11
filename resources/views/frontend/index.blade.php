@@ -20,31 +20,19 @@
         var madina_hotel_count=0;
         $(document).ready(function () {
 
+            function testInput(event) {
 
+                var value = String.fromCharCode(event.which);
+                var pattern = new RegExp(/[a-zåäö ]/i);
+                return pattern.test(value);
+            }
+
+            $('#family_name').bind('keypress', testInput);
 
             $(":input").inputmask();
             $("#contact").inputmask({"mask": "0399-9999999"});
 
-            {{--$('#departure_date_air').datepicker();--}}
-            {{--$('#arriaval_date_air').datepicker();--}}
-            {{--$('#departure_date_air').datepicker('setStartDate', '{{date('d/m/y')}}');--}}
 
-
-
-            {{--$('#departure_date_air')--}}
-            {{--    .datepicker()--}}
-            {{--    .on('changeDate', function(ev){--}}
-            {{--        // if (ev.date.valueOf() < date-start-display.valueOf()){--}}
-            {{--        // ....--}}
-            {{--        // }--}}
-            {{--        var newDate = new Date(ev.date)--}}
-            {{--        newDate.setDate(newDate.getDate() + 1);--}}
-
-            {{--        console.log(newDate);--}}
-
-            {{--        $('#arriaval_date_air').datepicker('setStartDate', newDate);--}}
-
-            {{--    });--}}
 
             $("#myModal").modal('show');
             $('#add_routes_button').click(function () {
@@ -544,7 +532,7 @@ makkah_hotel_count--;
     Previous Menu</button>
 
     </a>
-    <form class="form-horizontal" action="{{route('frontend.formrule')}}" method="get" style="border: 1px solid black;border-radius:10px;padding: 10px;" >
+    <form class="form-horizontal" action="{{route('frontend.formrule')}}" method="get" style="border: 1px solid black;border-radius:10px;padding: 10px;"  autocomplete="off">
         @csrf
         <h4>
             <i class="fas fa-users" aria-hidden="true"></i>
@@ -553,7 +541,7 @@ makkah_hotel_count--;
         <div class="row">
             <label class="control-label col-sm-2" for="email">Family Name:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="email" placeholder="Enter family name" name="family_name"  required>
+                <input type="text" class="form-control" id="family_name" placeholder="Enter family name" name="family_name"  required>
             </div>
         </div>
 
@@ -899,7 +887,7 @@ makkah_hotel_count--;
                     Ziarat Price:
                     <input type="text" disabled value="{{$ziarat_price}} SR"  class="form-control">
                     Enter total persons:
-                    <input type="text" name="persons_for_ziarat"  class="form-control">
+                    <input type="number" name="persons_for_ziarat"  class="form-control">
 
                 </div>
             </div>

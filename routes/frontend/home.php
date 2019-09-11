@@ -5,6 +5,8 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\User\AccountController;
 use App\Http\Controllers\Frontend\User\ProfileController;
 use App\Http\Controllers\Frontend\User\DashboardController;
+use Illuminate\Http\Request;
+use function foo\func;
 
 /*
  * Frontend Controllers
@@ -15,9 +17,30 @@ Route::get('/main', [HomeController::class, 'index'])->name('index');
 Route::get('/gethotels/{type}', [HomeController::class, 'gethotels'])->name('gethotels');
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('contact/send', [ContactController::class, 'send'])->name('contact.send');
-Route::get('/formrule', function(Request $request){
+
+
+Route::get('/pdf/{data}', function (Request $request){
+    dd($request->data);
+})->name('pdf');
+
+
+Route::get('/formrule', function(Request $request)
+{
+
+//    $pdf->download('Umrah Quotation.pdf');
+
+
+    $pdf = PDF::loadView('frontend.CaculatedAmount', ['request'=>$request,'buttoncheck'=>0]);
+    $pdf->save(public_path('Umrah Quotation.pdf'));
+
+    return view('frontend.CaculatedAmount')->with('request',$request)->with('buttoncheck',1);
+
 //    dd(request()->all());
-   return view('frontend.CaculatedAmount')->with('request',$request);
+
+//    $filename = 'retirement-'.rand(1000,9999).'.pdf';
+//    $pdf = \Barryvdh\DomPDF\Facade::loadView('frontend.CaculatedAmount',compact('request'));
+//    $pdf->save($this->files_path.$filename);
+
 
 
 })->name('formrule');
