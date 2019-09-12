@@ -561,7 +561,7 @@ makkah_hotel_count--;
         <div class="row">
             <label class="control-label col-sm-2" for="email">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" >
             </div>
         </div>
 

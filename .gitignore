@@ -3,8 +3,8 @@
 /public/storage
 /public/images
 /storage/*.key
-/vendor
-/.idea
+vendor
+.idea
 /.vagrant
 /nbproject
 Homestead.json

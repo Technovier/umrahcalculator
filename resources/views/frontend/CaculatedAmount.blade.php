@@ -379,6 +379,7 @@
 
 
 
+        @php($tickcheck=0)
 
 
         @if(request()->transport_route!=null)
@@ -427,12 +428,23 @@
                             <?php $total=$total+DB::table('vehical_routes_fairs')->where('route_id',$tr)->where('vehical_id',$final_collect[$id])->value('fare');?>
                         </td>
                     </tr>
+
+                        @else
+
+                  @php($tickcheck=1)
+
                      @endif
 
 
                 @php($id+=1)
 
             @endforeach
+
+            @if($tickcheck==1)
+                <tr>
+                    <td colspan="3">Economy by Bus</td>
+                </tr>
+                @endif
         @else
 
             <tr>

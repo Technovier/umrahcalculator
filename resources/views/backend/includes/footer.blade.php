@@ -1,7 +1,7 @@
 <footer class="app-footer">
     <div>
         <strong>
-            Developed by Teachnovier
+            Developed by Technovier
 
         </strong>
     </div>
